@@ -19,3 +19,6 @@ If you are having any trouble with PyMath, or if you discover a bug, please crea
 ## Changelog:
 ### 0.1:
 First release.
+
+## License
+See LICENSE.txt
