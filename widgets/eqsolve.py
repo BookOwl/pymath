@@ -3,6 +3,7 @@
 from tkinter import tix
 from tkinter.constants import *
 from tkinter import *
+from tkinter.messagebox import *
 from tkinter.ttk import *
 
 import sympy
@@ -23,12 +24,15 @@ class EqWidget(Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(2, weight=1)
     def getEq(self):
-        exp1 = self.e1.get()
-        exp1 = sympy.sympify(exp1)
-        exp2 = self.e2.get()
-        exp2 = sympy.sympify(exp2)
-        sym = sympy.symbols(self.syment.get())
-        return sympy.Eq(exp1, exp2), sym
+        try:
+            exp1 = self.e1.get()
+            exp1 = sympy.sympify(exp1)
+            exp2 = self.e2.get()
+            exp2 = sympy.sympify(exp2)
+            sym = sympy.symbols(self.syment.get())
+            return sympy.Eq(exp1, exp2), sym
+        except Exception as e:
+            showerror("ERROR!", str(e))
 
 class EqSolveWidget(Frame):
     def __init__(self, *args, **kargs):
@@ -51,15 +55,20 @@ class EqSolveWidget(Frame):
         self.res = Label(self, text="Solutions: ")
         self.res.pack(side=LEFT, anchor=N)
     def solve(self):
-        eq, var = self.eq.getEq()
-        print(eq, var)
-        sols = sympy.solve(eq, var)
-        print(sols)
-        sols = ['%s = %s' % (str(var), s) for s in sols]
-        solstr = ", ".join(sols)
-        solstr = "Solutions: " + solstr
-        print(solstr)
-        self.res["text"] = solstr
+        try:
+            eq, var = self.eq.getEq()
+            print(eq, var)
+            sols = sympy.solve(eq, var)
+            print(sols)
+            sols = ['%s = %s' % (str(var), s) for s in sols]
+            solstr = ", ".join(sols)
+            if len(sols) == 0:
+                solstr = "None"
+            solstr = "Solutions: " + solstr
+            print(solstr)
+            self.res["text"] = solstr
+        except Exception as e:
+            showerror("ERROR!", str(e))
 
 def testEqWidget():
     root = Tk()

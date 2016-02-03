@@ -1,5 +1,6 @@
 #!python3
 from tkinter import *
+from tkinter.messagebox import *
 from tkinter.ttk import *
 import sympy
 
@@ -25,11 +26,14 @@ class FactorWidget(Frame):
         self.ent.bind("<Return>", (lambda e: self.__factor()))
 
     def __factor(self):
-        print("Factoring..")
-        expr = sympy.sympify(self.ent.get())
-        fexpr = sympy.factor(expr)
-        print(str(fexpr))
-        self.res["text"] = "Your expression factors as %s" % str(fexpr)
+        try:
+            print("Factoring..")
+            expr = sympy.sympify(self.ent.get())
+            fexpr = sympy.factor(expr)
+            print(str(fexpr))
+            self.res["text"] = "Your expression factors as %s" % str(fexpr)
+        except Exception as e:
+            showerror("ERROR!", str(e))
 
 if __name__ == '__main__':
     root = Tk()

@@ -17,6 +17,8 @@ The homepage for PyMath is [https://github.com/BookOwl/pymath](https://github.co
 If you are having any trouble with PyMath, or if you discover a bug, please create an issue at [https://github.com/BookOwl/pymath/issues](https://github.com/BookOwl/pymath/issues)
 
 ## Changelog:
+### 0.2: 
+Improved plotting, added error reporting.
 ### 0.1:
 First release.
 

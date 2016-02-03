@@ -1,5 +1,6 @@
 #!python3
 from tkinter import *
+from tkinter.messagebox import *
 from tkinter.ttk import *
 import sympy
 
@@ -39,12 +40,15 @@ class SimpWidget(Frame):
         self.simpselect.pack()
 
     def simplify(self):
-        type = self.simpselect.getType()
-        meth = simptypes[type]
-        expr = sympy.sympify(self.ent.get())
-        res  = str(meth(expr))
-        self.ent.delete(0, END)
-        self.ent.insert(0, res)
+        try:
+            type = self.simpselect.getType()
+            meth = simptypes[type]
+            expr = sympy.sympify(self.ent.get())
+            res  = str(meth(expr))
+            self.ent.delete(0, END)
+            self.ent.insert(0, res)
+        except Exception as e:
+            showerror("ERROR!", str(e))
 
 if __name__ == '__main__':
     root = Tk()
