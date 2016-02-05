@@ -1,5 +1,5 @@
 PyMath
-Version 0.1
+Version 0.3
 
 About:
 PyMath is a simple program designed to help math students (a.k.a, me) solve problems.
@@ -16,6 +16,8 @@ Help:
 If you are having any trouble with PyMath, or if you discover a bug, please create an issue at https://github.com/BookOwl/pymath/issues
 
 Changelog:
+0.3 Added a statistics page and a console-less launcher file for Windows.
+
 0.2: Improved plotting, added error reporting.
 
 0.1: First release.
